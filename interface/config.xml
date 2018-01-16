@@ -1,0 +1,42 @@
+﻿<node>
+	<case>
+		<TestId>testcase001</TestId>
+		<Title>啄木鸟测试咨询网的测试</Title>
+		<Method>get</Method>
+		<Desc>测试啄木鸟测试咨询网</Desc>
+		<Url>http://www.3testing.com</Url>
+		<InptArg> "action": "44803","accont": "1865998xxxx","niqeid": "00D7C889-06A0-426E-BAB1-5741A1192038","title": "啄木鸟测试网","smmary": "啄木鸟测试网接口测试","message": "12345","msgtype": "25","menid": "203"</InptArg>
+		<Result>200</Result>
+		<CheckWord>iframe id="head"</CheckWord>
+	</case>
+	<case>
+		<TestId>testcase002</TestId>
+		<Title>百度网首页测试</Title>
+		<Method>get</Method>
+		<Desc>测试百度网首页</Desc>
+		<Url>https://www.baidu.com</Url>
+		<InptArg>"ie": "utf-8","f": "8","rsv_bp": "0","rsv_idx": "1","tn": "baidu","wd": "%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%A%95","rsv_pq": "bf4d3a390058e1be","rsv_t": "66ef5OBahZJnF8i7ZXtHIdoystK29gJnPA9nNg6I5eJm2RhxcUHg0JngQ8Q","rqlang": "cn","rsv_enter": "1","rsv_sug3": "2","action": "44803","accont": "33446675xxxx","niqeid": "00D7C889-06A0-426E-BAB1-5741A1192038","title": "百度查询测试","smmary": "百度查询接口测试","message": 12345","msgtype": "25","menid": "203"</InptArg>
+		<Result>200</Result>
+		<CheckWord>input type=submit id=su</CheckWord>
+	</case>
+	<case>
+		<TestId>testcase003</TestId>
+		<Title>百度网查询参数缺少测试</Title>
+		<Method>post</Method>
+		<Desc>测试百度网查询后，查询内容为空，返回百度网首页</Desc>
+		<Url>https://www.baidu.com/s</Url>
+		<InptArg>"ie": "utf-8","f": "8","rsv_bp": "0","rsv_idx": "1","tn": "baidu","wd": "","rsv_pq": "bf4d3a390058e1be","rsv_t": "66ef5OBahZJnF8i7ZXtHIdoystK29gJnPA9nNg6I5eJm2RhxcUHg0JngQ8Q","rqlang": "cn","rsv_enter": "1","rsv_sug3": "2","action": "44803","accont": "33446675xxxx","niqeid": "00D7C889-06A0-426E-BAB1-5741A1192038","title": "百度查询测试","smmary": "百度查询接口测试","message": "12345","msgtype": "25","menid": "203"</InptArg>
+		<Result>200</Result>
+		<CheckWord>location.replace(location.href.replace("https://","http://"));</CheckWord>
+	</case>
+	<case>
+		<TestId>testcase003</TestId>
+		<Title>测试啄木鸟测试咨询网不存在页测试</Title>
+		<Method>get</Method>
+		<Desc>测试啄木鸟测试咨询网存在的网址404error测试</Desc>
+		<Url>https://www.3testing.com/files/a.html</Url>
+		<InptArg> ""</InptArg>
+		<Result>404</Result>
+		<CheckWord> </CheckWord>
+	</case>
+</node>

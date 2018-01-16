@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+            <li class="active"><a href="/view_chart/">查看购物车<font color="#FF0000">{{ count }}</font></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/user_info/">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <div class="page-header">
+        <div id="navbar" class="navbar-collapse collapse">
+        </div><!--/.navbar-collapse -->
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          用户名：{{user_info.username}}<br>
+          Email:{{user_info.email}}<br>
+          <form action="/change_password/" method="get">
+		  {% csrf_token %}
+            <input type="submit" value="修改密码">
+          </form>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>编号</th>
+				<th>地址</th>
+				<th>电话</th>
+				<th>修改</th>
+				<th>删除</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key in address %}
+                <tr>
+                  <td>{{key.id}}</td>
+                  <td>{{key.address}}</td>
+				  <td>{{key.phone}}</td>
+				  <td><a href="/update_address/{{key.id}}/1/">修改</a></td>
+				  <td><a href="/delete_address/{{key.id}}/1/">删除</a></td>
+                </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+		  </form><br>
+		  <form method="get" action="/add_address/1/">
+		  {% csrf_token %}
+		  <input type="submit" value="添加地址">
+		  </form>
+		 </div>
+		 </div>
+
+{% endblock %}

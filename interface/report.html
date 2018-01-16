@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<title>接口测试报告</title>
+<style>  
+.table-b table td{border:1px solid #000}  
+</style>
+</head>
+
+<body>
+<p align="center"><b>接口测试报告
+</b></p>
+<div class="table-b table td">
+<table border="0" width="101%">
+	<tr bgcolor="#000099">
+		<td width="5%"><b><font color="#FFFFFF">测试用例编号</font></b></td>
+		<td width="108"><b><font color="#FFFFFF">标题</font></b></td>
+		<td width="40"><b><font color="#FFFFFF">传输方法</font></b></td>
+		<td width="83"><b><font color="#FFFFFF">描述</font></b></td>
+		<td width="360"><b><font color="#FFFFFF">URL</font></b></td>
+		<td width="839"><b><font color="#FFFFFF">参数</font></b></td>
+		<td width="62"><b><font color="#FFFFFF">返回码</font></b></td>
+		<td width="206"><b><font color="#FFFFFF">检查点</font></b></td>
+		<td width="1%"><b><font color="#FFFFFF">是否通过</font></b></td>
+	</tr>
+	<tr><td>testcase001</td>
+<td width="108">啄木鸟测试咨询网的测试</td>
+<td width="40">get</td>
+<td width="83">测试啄木鸟测试咨询网</td>
+<td width="360">http://www.3testing.com</td>
+<td width="839"> "action": "44803","accont": "1865998xxxx","niqeid": "00D7C889-06A0-426E-BAB1-5741A1192038","title": "啄木鸟测试网","smmary": "啄木鸟测试网接口测试","message": "12345","msgtype": "25","menid": "203"</td>
+<td width="62">200</td>
+<td width="206">iframe id="head"</td>
+<td>通过
+</td>
+</tr>
+<tr><td>testcase002</td>
+<td width="108">百度网首页测试</td>
+<td width="40">get</td>
+<td width="83">测试百度网首页</td>
+<td width="360">https://www.baidu.com</td>
+<td width="839">"ie": "utf-8","f": "8","rsv_bp": "0","rsv_idx": "1","tn": "baidu","wd": "%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%A%95","rsv_pq": "bf4d3a390058e1be","rsv_t": "66ef5OBahZJnF8i7ZXtHIdoystK29gJnPA9nNg6I5eJm2RhxcUHg0JngQ8Q","rqlang": "cn","rsv_enter": "1","rsv_sug3": "2","action": "44803","accont": "33446675xxxx","niqeid": "00D7C889-06A0-426E-BAB1-5741A1192038","title": "百度查询测试","smmary": "百度查询接口测试","message": 12345","msgtype": "25","menid": "203"</td>
+<td width="62">200</td>
+<td width="206">input type=submit id=su</td>
+<td>通过
+</td>
+</tr>
+<tr><td>testcase003</td>
+<td width="108">百度网查询参数缺少测试</td>
+<td width="40">post</td>
+<td width="83">测试百度网查询后，查询内容为空，返回百度网首页</td>
+<td width="360">https://www.baidu.com/s</td>
+<td width="839">"ie": "utf-8","f": "8","rsv_bp": "0","rsv_idx": "1","tn": "baidu","wd": "","rsv_pq": "bf4d3a390058e1be","rsv_t": "66ef5OBahZJnF8i7ZXtHIdoystK29gJnPA9nNg6I5eJm2RhxcUHg0JngQ8Q","rqlang": "cn","rsv_enter": "1","rsv_sug3": "2","action": "44803","accont": "33446675xxxx","niqeid": "00D7C889-06A0-426E-BAB1-5741A1192038","title": "百度查询测试","smmary": "百度查询接口测试","message": "12345","msgtype": "25","menid": "203"</td>
+<td width="62">200</td>
+<td width="206">location.replace(location.href.replace("https://","http://"));</td>
+<td>通过
+</td>
+</tr>
+<tr><td>testcase003</td>
+<td width="108">测试啄木鸟测试咨询网不存在页测试</td>
+<td width="40">get</td>
+<td width="83">测试啄木鸟测试咨询网存在的网址404error测试</td>
+<td width="360">https://www.3testing.com/files/a.html</td>
+<td width="839"> ""</td>
+<td width="62">404</td>
+<td width="206"> </td>
+<td>通过
+</td>
+</tr>
+
+	</table>
+
+</body>
+
+</html>

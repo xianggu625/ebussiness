@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+	<case>
+		<login>1</login>
+	</case>
+	<!--- 翻页显示当前所有的商品信息 -->
+	<case>
+		<TestId>goods-testcase001</TestId>
+		<Title>商品信息</Title>
+		<Method>get</Method>
+		<Desc>显示商品列表信息</Desc>
+		<Url>http://127.0.0.1:8000/goods_view/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>龙井茶叶</CheckWord><!--- 与初始化商品名称保持一致 -->
+	</case>
+	<!--- 显示当前商品的详细信息 -->
+	<case>
+		<TestId>goods-testcase002</TestId>
+		<Title>商品信息</Title>
+		<Method>get</Method>
+		<Desc>显示商品详细信息</Desc>
+		<Url>http://127.0.0.1:8000/view_goods/0/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶</CheckWord><!--- 与初始化商品详细信息保持一致 -->
+	</case>
+	<!--- 输入数据:目前已在存在商品名称的子串,期望结果:这个商品被查询出来 -->
+	<case>
+		<TestId>goods-testcase003</TestId>
+		<Title>商品信息</Title>
+		<Method>post</Method>
+		<Desc>查询商品</Desc>
+		<Url>http://127.0.0.1:8000/search_name/</Url>
+		<InptArg>{"good":"龙井"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>龙井</CheckWord><!--- 包含查询子串 -->
+	</case>
+	<!--- 输入数据:空字符,期望结果:显示所有内容 -->
+	<case>
+		<TestId>goods-testcase004</TestId>
+		<Title>商品信息</Title>
+		<Method>post</Method>
+		<Desc>查询商品</Desc>
+		<Url>http://127.0.0.1:8000/search_name/</Url>
+		<InptArg>{"good":""}</InptArg>
+		<Result>200</Result>
+		<CheckWord>龙井茶叶</CheckWord><!--- 与初始化商品名称保持一致 -->
+	</case>
+	<!--- 输入数据:%,期望结果:不显示所有内容 -->
+	<case>
+		<TestId>goods-testcase005</TestId>
+		<Title>商品信息</Title>
+		<Method>post</Method>
+		<Desc>查询商品</Desc>
+		<Url>http://127.0.0.1:8000/search_name/</Url>
+		<InptArg>{"good":"%"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>NOT,龙井茶叶</CheckWord><!--- 与初始化商品名称在商品列表中不显示,NOT加逗号表示不显示 -->
+	</case>
+</node>

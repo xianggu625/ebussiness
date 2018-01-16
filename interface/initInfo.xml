@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+	<case>
+		<!--- 初始化用户信息 -->
+		<id>0</id><!--- 用户编号 -->
+		<username>Johnson</username><!--- 用户名称 -->
+		<password>000000</password><!--- 用户密码 -->
+		<email>Johnson@126.com</email><!--- Email地址 -->
+	</case>
+	<!--- 初始化商品信息 -->
+	<case>
+		<goodid>0</goodid><!--- 商品编号 -->
+		<name>龙井茶叶</name><!--- 商品名称 -->
+		<price>1234.56</price><!--- 商品价钱 -->
+		<picture>upload/0.jpg</picture><!--- 商品图片 -->
+		<desc>龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶龙井茶叶</desc><!--- 商品描述 -->
+	</case>
+	<!--- 初始化收货地址信息 -->
+	<case>
+		<addressid>0</addressid><!--- 收货地址编号 -->
+		<address>上海市外滩一号</address><!--- 收货地址名称 -->
+		<phone>13688889999</phone><!--- 联系电话 -->
+		<userid>0</userid><!--- 用户编号，与初始化用户编号一致 -->
+	</case>
+	<!--- 初始化总订单信息 -->
+	<case>
+		<ordersid>0</ordersid><!--- 总订单编号 -->
+		<createtime>Sept. 8, 2017, 6:29 a.m.</createtime><!--- 总订单产生日期 -->
+		<status>1</status><!--- 这里必须设置为1,表示已支付，与测试代码区别 -->
+		<ordersaddressid>0</ordersaddressid><!--- 地址编号，与初始化地址编号保持一致 -->
+	</case>
+	<!--- 初始化单个订单信息 -->
+	<case>
+		<orderid>0</orderid><!--- 单个订单编号 -->
+		<count>9999</count><!--- 单个订单数量，这里必填9999 ，与测试代码区别-->
+		<ordergoodid>0</ordergoodid><!--- 商品编号，与初始化商品编号保持一致 -->
+		<orderorderid>0</orderorderid><!--- 总订单编号，与初始化总订单编号保持一致 -->
+		<orderuserid>0</orderuserid><!--- 用户编号，与初始化用户编号保持一致 -->
+	</case>
+</node>

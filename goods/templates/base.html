@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <title>电子商务系统</title>
+
+      <!-- Bootstrap core CSS -->
+    <link href="/upload/signin.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/upload/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body role="document">
+<!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/goods_view/">电子商务系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/goods_view/">商品列表</a></li>
+			<li class="active"><a href="/view_all_order/">查看所有订单</a></li>
+  {% block content %}
+
+
+  {% endblock %}
+    <div class="container theme-showcase" role="main">
+
+        <div class="page-header">
+        </div>
+        <footer class="footer">
+          <p>&copy; Company 2017,作者：顾翔</p>
+        </footer>
+
+    </div> <!-- /container -->
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>

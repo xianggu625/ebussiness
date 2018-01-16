@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/user_info/">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+      <div class="page-header">
+        <div id="navbar" class="navbar-collapse collapse">
+        </div><!--/.navbar-collapse -->
+      </div>
+    <div class="container theme-showcase" role="main">
+	<font color="#FF0000">{{error}}</font>
+      <div class="row">
+        <div class="col-md-6">
+		<form method="POST" action="/create_order/">
+		{% csrf_token %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>选择</th>
+                <th>地址</th>
+				<th>修改</th>
+				<th>删除</th>
+               </tr>
+            </thead>
+            <tbody>
+			  {% for address in addresses %}
+                <tr>
+                  <td><input type="radio" value="{{address.id}}"  name="address"></td>
+                  <td>{{address.address}}</td>
+				  <td><a href="/update_address/{{address.id}}/2/">修改</a></td>
+				  <td><a href="/delete_address/{{address.id}}/2/">删除</a></td>
+                 </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+		  <input type="submit" value="下一步">
+		  </form><br>
+		  <form method="get" action="/add_address/2/">
+		  {% csrf_token %}
+		  <input type="submit" value="添加地址">
+		  </form>
+        </div>
+
+      </div>
+{% endblock %}

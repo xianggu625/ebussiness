@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+            <li class="active"><a href="/view_chart/">查看购物车<font color="#FF0000">{{ count }}</font></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/user_info/">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!--商品详情-->
+      <div class="row" style="margin-top:30px">
+        <div class="col-lg-6">
+          <div class="input-group">
+		  单价：￥{{good.price}}元 <a href="/add_chart/{{good.id}}/2/">放入购物车</a><br>
+		  <img src="/{{good.picture}}"><br>
+		  {{good.desc}}
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+
+    </div> <!-- /container   glyphicon glyphicon-phone border-style:none; -->
+
+{% endblock %}

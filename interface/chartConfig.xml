@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+	<case>
+		<login>1</login>
+	</case>
+	<!--- 添加进购物车，查看显示购物车内商品数量的变化 -->	
+	<case>
+		<TestId>chart-testcase001</TestId>
+		<Title>购物车</Title>
+		<Method>get</Method>
+		<Desc>添加进购物车</Desc>
+		<Url>http://127.0.0.1:8000/add_chart/0/1/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>查看购物车&lt;font color=&quot;#FF0000&quot;&gt;1&lt;/font&gt;&lt;/a&gt;</CheckWord><!--- 显示添加成功 -->
+	</case>
+	<!--- 添加进购物车，在购物车列表页面查看到这个商品 -->	
+	<case>
+		<TestId>chart-testcase002</TestId>
+		<Title>购物车</Title>
+		<Method>get</Method>
+		<Desc>查看购物车中的内容</Desc>
+		<Url>http://127.0.0.1:8000/view_chart/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>&lt;td&gt;龙井茶叶&lt;/td&gt;</CheckWord><!--- 购物车中显示了添加的商品 -->
+	</case>
+	<!--- 修改购物车中商品数量为9 -->	
+	<case>
+		<TestId>chart-testcase003</TestId>
+		<Title>购物车</Title>
+		<Method>post</Method>
+		<Desc>修改购物车中商品数量为9</Desc>
+		<Url>http://127.0.0.1:8000/update_chart/0/</Url>
+		<InptArg>{"count0":"9"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>&lt;input type=&quot;number&quot; value=&quot;9&quot;</CheckWord><!--- 购物车中显示了商品数量的变更 -->
+	</case>
+	<!--- 修改购物车中商品数量为0 -->	
+	<case>
+		<TestId>chart-testcase004</TestId>
+		<Title>购物车</Title>
+		<Method>post</Method>
+		<Desc>修改购物车中商品数量为0</Desc>
+		<Url>http://127.0.0.1:8000/update_chart/0/</Url>
+		<InptArg>{"count0":"0"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>个数不能小与0</CheckWord><!--- 验证购物车中商品数量=0是不允许的 -->
+	</case>
+	<!--- 修改购物车中商品数量为-1 -->	
+	<case>
+		<TestId>chart-testcase005</TestId>
+		<Title>购物车</Title>
+		<Method>post</Method>
+		<Desc>修改购物车中商品数量为-1</Desc>
+		<Url>http://127.0.0.1:8000/update_chart/0/</Url>
+		<InptArg>{"count0":"-1"}</InptArg><!--- 验证购物车中商品数量<0是不允许的 -->
+		<Result>200</Result>
+		<CheckWord>个数不能小与0</CheckWord>
+	</case>
+	<!--- 把初始化的商品从购物车中删除 -->	
+	<case>
+		<TestId>chart-testcase006</TestId>
+		<Title>购物车</Title>
+		<Method>get</Method>
+		<Desc>把初始化的商品从购物车中删除</Desc>
+		<Url>http://127.0.0.1:8000/remove_chart/0/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>NOT,龙井茶叶</CheckWord><!--- 龙井茶叶在购物车中不显示 -->
+	</case>
+	<!--- 把购物车中的所有商品均删除 -->	
+	<case>
+		<TestId>chart-testcase007</TestId>
+		<Title>购物车</Title>
+		<Method>get</Method>
+		<Desc>把购物车中的所有商品均删除</Desc>
+		<Url>http://127.0.0.1:8000/remove_chart_all/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>NOT,&lt;td&gt;</CheckWord><!--- 不存在任何的<td>标识 -->
+	</case>
+</node>

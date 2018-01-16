@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+	<case>
+		<login>0</login><!--- 0表示执行不需要登录、1表示需要登录 -->
+	</case>
+	<!--- 注册的时候，用户名已经存在 -->	
+	<case>
+		<TestId>loginReg-testcase001</TestId>
+		<Title>用户注册</Title>
+		<Method>post</Method>
+		<Desc>注册的时候，用户名已经存在</Desc>
+		<Url>http://127.0.0.1:8000/register/</Url>
+		<InptArg>{"username":"Johnson","password":"000000","email":"Johnson5@126.com"}</InptArg><!--- 用户名同initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>用户名已经存在！</CheckWord>
+	</case>
+	<!--- 注册成功 -->
+	<case>
+		<TestId>loginReg-testcase002</TestId>
+		<Title>用户注册</Title>
+		<Method>post</Method>
+		<Desc>注册用户名不存在</Desc><!--- 通过“注册用户名不存在”测试完毕删除数据库记录 -->
+		<Url>http://127.0.0.1:8000/register/</Url>
+		<InptArg>{"username":"smith","password":"000000","email":"smith@126.com"}</InptArg><!--- 用户名不同于initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>登录</CheckWord>
+	</case>
+	<!--- 登录操作，正确用户名，错误密码 -->
+	<case>
+		<TestId>loginReg-testcase003</TestId>
+		<Title>用户登录</Title>
+		<Method>post</Method>
+		<Desc>正确用户名，错误密码</Desc>
+		<Url>http://127.0.0.1:8000/login_action/</Url>
+		<InptArg>{"username":"Johnson","password":"123456"}</InptArg><!--- 密码不同于initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>用户名或者密码错误</CheckWord>
+	</case>
+	<!--- 登录操作，错误用户名，正确密码 -->
+	<case>
+		<TestId>loginReg-testcase004</TestId>
+		<Title>用户登录</Title>
+		<Method>post</Method>
+		<Desc>错误用户名，正确密码</Desc>
+		<Url>http://127.0.0.1:8000/login_action/</Url>
+		<InptArg>{"username":"smith","password":"000000"}</InptArg><!--- 用户名不同于initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>用户名或者密码错误</CheckWord>
+	</case>
+	<!--- 登录操作，错误用户名，错误密码 -->
+	<case>
+		<TestId>loginReg-testcase005</TestId>
+		<Title>用户登录</Title>
+		<Method>post</Method>
+		<Desc>错误用户名，错误密码</Desc>
+		<Url>http://127.0.0.1:8000/login_action/</Url>
+		<InptArg>{"username":"smith","password":"123456"}</InptArg><!--- 用户名、密码均不同于initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>用户名或者密码错误</CheckWord>
+	</case>
+	<!--- 登录操作成功 -->
+	<case>
+		<TestId>loginReg-testcase006</TestId>
+		<Title>用户登录</Title>
+		<Method>post</Method>
+		<Desc>正确用户名，正确密码</Desc>
+		<Url>http://127.0.0.1:8000/login_action/</Url>
+		<InptArg>{"username":"Johnson","password":"000000"}</InptArg><!--- 用户名、密码均同于initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>查看购物车</CheckWord>
+	</case>
+	<!--- SQL注入测试 -->
+	<case>
+		<TestId>loginReg-testcase007</TestId>
+		<Title>用户登录</Title>
+		<Method>post</Method>
+		<Desc>SQL注入测试</Desc>
+		<Url>http://127.0.0.1:8000/login_action/</Url>
+		<InptArg>{"username":"111","password":"' or 1=1 --'"}</InptArg><!--- 用户名、密码均同于initInfo.xml中用户信息 -->
+		<Result>200</Result>
+		<CheckWord>用户名或者密码错误</CheckWord>
+	</case>
+</node>

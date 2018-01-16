@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+	<case>
+		<login>1</login>
+	</case>
+	<!--- 显示用户信息 -->
+	<case>
+		<TestId>userInfo-testcase001</TestId>
+		<Title>用户的显示</Title>
+		<Method>get</Method>
+		<Desc>显示用户信息</Desc>
+		<Url>http://127.0.0.1:8000/user_info/</Url>
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>Johnson</CheckWord><!--- 初始化文件中的用户名 -->
+	</case>
+	<!--- 修改用户密码，旧密码不正确 -->
+	<case>
+		<TestId>userInfo-testcase002</TestId>
+		<Title>修改用户密码</Title>
+		<Method>post</Method>
+		<Desc>旧密码不正确</Desc>
+		<Url>http://127.0.0.1:8000/change_password/</Url>
+		<InptArg>{"oldpassword":"123456","newpassword":"654321","checkpassword":"654321"}</InptArg><!--- 旧密码与初始化密码不相同 -->
+		<Result>200</Result>
+		<CheckWord>旧密码不正确</CheckWord>
+	</case>
+	<!--- 修改用户密码，新密码与旧密码相同 -->
+	<case>
+		<TestId>userInfo-testcase003</TestId>
+		<Title>修改用户密码</Title>
+		<Method>post</Method>
+		<Desc>新密码不能与旧密码相同</Desc>
+		<Url>http://127.0.0.1:8000/change_password/</Url>
+		<InptArg>{"oldpassword":"000000","newpassword":"000000","checkpassword":"000000"}</InptArg><!--- 新密码与旧密码相同 -->
+		<Result>200</Result>
+		<CheckWord>新密码不能与旧密码相同</CheckWord>
+	</case>
+	<!--- 修改用户密码，确认密码与新密码不匹配 -->
+	<case>
+		<TestId>userInfo-testcase004</TestId>
+		<Title>修改用户密码</Title>
+		<Method>post</Method>
+		<Desc>确认密码与新密码不匹配</Desc>
+		<Url>http://127.0.0.1:8000/change_password/</Url>
+		<InptArg>{"oldpassword":"000000","newpassword":"123456","checkpassword":"654321"}</InptArg><!--- 确认密码与新密码不匹配 -->
+		<Result>200</Result>
+		<CheckWord>确认密码与新密码不匹配</CheckWord>
+	</case>
+	<!--- 修改用户密码，密码修改成功 -->
+	<case>
+		<TestId>userInfo-testcase005</TestId>
+		<Title>修改用户密码</Title>
+		<Method>post</Method>
+		<Desc>密码修改成功</Desc>
+		<Url>http://127.0.0.1:8000/change_password/</Url>
+		<InptArg>{"oldpassword":"000000","newpassword":"123456","checkpassword":"123456"}</InptArg><!--- 新密码与旧密码不同，确认密码与新密码匹配 -->
+		<Result>200</Result>
+		<CheckWord>密码修改成功</CheckWord>
+	</case>
+	<!--- 测试CSRF不启用，返回403码 -->
+	<case>
+		<TestId>userInfo-testcase006</TestId>
+		<Title>修改用户密码</Title>
+		<Method>post</Method>
+		<Desc>密码修改成功</Desc>
+		<Url>http://127.0.0.1:8000/change_password/</Url>
+		<InptArg>{"oldpassword":"000000","newpassword":"123456","checkpassword":"123456"}</InptArg><!--- 新密码与旧密码不同，确认密码与新密码匹配 -->
+		<Result>403</Result>
+		<CheckWord>Forbidden</CheckWord>
+	</case>
+</node>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>修改地址</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/upload/signin.css" rel="stylesheet"-->
+    <!-- Custom styles for this template -->
+    <link href="/upload/bootstrap.min.css" rel="stylesheet"-->
+  <link href="/upload/my.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <form class="form-signin" method="post" enctype="multipart/form-data">
+      <h2 class="form-signin-heading">修改地址</h2>
+	  {% csrf_token %}
+      <p><label for="id_address">地址:</label> <input type="text"  value="{{address.address}}" name="address" id="id_address" size="20" maxlength="100" required /></p>
+	  <p><label for="id_phone">电话:</label> <input type="text" value="{{address.phone}}" name="phone" id="id_phone" size="20" maxlength="15" required /></p>
+		<p style="color:red">{{error}}</p> <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">修改</button><br>
+    </form>
+
+  </div> <!-- /container -->
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/user_info/">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+	  <div class="page-header">
+        <div id="navbar" class="navbar-collapse collapse">
+        </div><!--/.navbar-collapse -->
+      </div>
+	  <p>生成时间：{{orders.create_time}} 配货地址：{{address}} 总价钱：￥{{prices}}</p>
+
+	  <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>编号</th>
+				<th>商品名称</th>
+				<th>商品价钱</th>
+				<th>个数</th>
+				<th>删除</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key in order %}
+                <tr>
+                  <td><a href="/view_goods/{{key.good_id}}/">{{ key.id }}</a></td>
+                  <td>{{ key.name }}</td>
+                  <td>￥{{ key.price }}</td>
+				  <td>{{ key.count }}</td>
+				  <td><a href="/delete_orders/{{key.id}}/3/">删除</a></td>
+                </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+		<input type="submit" value="支付">
+        </div>
+
+      </div>
+{% endblock %}

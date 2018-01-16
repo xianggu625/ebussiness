@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/user_info/">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	<div class="page-header">
+        <div id="navbar" class="navbar-collapse collapse">
+        </div><!--/.navbar-collapse -->
+      </div>
+    <div class="container theme-showcase" role="main">
+	<font color="#FF0000">{{error}}</font>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>价钱</th>
+				        <th>个数</th>
+                <th>移除</th>
+              </tr>
+            </thead>
+            <tbody>
+			  {% for key in goodss %}
+                <tr>
+                  <td><a href="/view_goods/{{key.id}}/">{{key.id}}</a></td>
+                  <td>{{key.name}}</td>
+                  <td>￥{{key.price}}</td>
+                  <td><form action="/update_chart/{{key.id}}/" method="post">
+				  {% csrf_token %}
+				  <input type="number" value="{{key.count}}" style="width:30px;" name="count{{key.id}}" class="vIntegerField" id="id_count" required />
+				  <input type="submit" value="修改" /></form></td>
+                  <td><a href="/remove_chart/{{key.id}}/">移除</a></td>
+                </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+		  <form method="get" action="/remove_chart_all/">
+		  {% csrf_token %}
+		  <input type="submit" value="清除所有">
+		  </form>
+		  <form method="get" action="/view_address/">
+		  {% csrf_token %}
+		  <input type="submit" value="生成订单">
+		  </form>
+        </div>
+
+      </div>
+{% endblock %}

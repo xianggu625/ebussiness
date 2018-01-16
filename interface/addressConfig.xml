@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+	<case>
+		<login>1</login>
+	</case>
+	<!--- 为当前登录用户添加一个新的地址信息，显示在用户信息中 -->
+	<case>
+		<TestId>address-testcase001</TestId>
+		<Title>地址信息</Title>
+		<Method>post</Method>
+		<Desc>为当前登录用户添加一个新的地址信息</Desc><!--- 描述里面有"添加一个新的地址信息"，执行操作后程序会把这条记录删除 -->
+		<Url>http://127.0.0.1:8000/add_address/1/</Url>
+		<InptArg>{"address":"上海市延安中路100号","phone":"13681166561"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>延安中路</CheckWord><!--- 与参数中address保持一致 -->
+	</case>
+	<!--- 为当前登录用户添加一个已经存在的地址信息 -->
+	<case>
+		<TestId>address-testcase002</TestId>
+		<Title>地址信息</Title>
+		<Method>post</Method>
+		<Desc>为当前登录用户添加一个已经存在的地址信息</Desc>
+		<Url>http://127.0.0.1:8000/add_address/1/</Url>
+		<InptArg>{"address":"上海市外滩一号","phone":"13681166561"}</InptArg><!--- 参数中address与初始化地址名称信息保持一致 -->
+		<Result>200</Result>
+		<CheckWord>这个地址已经存在！</CheckWord>
+	</case>
+	<!--- 修改一个该用户没有使用过的地址 -->
+	<case>
+		<TestId>address-testcase003</TestId>
+		<Title>地址信息</Title>
+		<Method>post</Method>
+		<Desc>修改一个该用户没有使用过的地址</Desc>
+		<Url>http://127.0.0.1:8000/update_address/0/1/</Url>
+		<InptArg>{"address":"上海市延安中路100号","phone":"13681166561"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>上海市延安中路100号</CheckWord><!--- 与参数中phone保持一致 -->
+	</case>
+	<!--- 修改一个该用户已经使用过的地址 -->
+	<case>
+		<TestId>address-testcase004</TestId>
+		<Title>地址信息</Title>
+		<Method>post</Method>
+		<Desc>修改一个该用户已经使用过的地址</Desc>
+		<Url>http://127.0.0.1:8000/update_address/0/1/</Url>
+		<InptArg>{"address":"上海市延安中路100号","phone":"13681166561"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>这个地址已经存在！</CheckWord><!--- 与测试用例address-testcase003参数中address保持一致 -->
+	</case>
+	<!--- 删除地址信息 -->
+	<case>
+		<TestId>address-testcase005</TestId>
+		<Title>地址信息</Title>
+		<Method>get</Method>
+		<Desc>删除地址信息</Desc>
+		<Url>http://127.0.0.1:8000/delete_address/1234/1/</Url><!--- “1234”作为测试程序地址编号插入数据库表中 -->
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>NOT,朝阳门外5454号</CheckWord><!--- NOT后字符将作为地址名称插入数据库中，验证这个信息删除后不能后去 -->
+	</case>
+	<!--- 试图修改一个不属于自己的地址 -->
+	<case>
+		<TestId>address-testcase006</TestId>
+		<Title>地址信息</Title>
+		<Method>post</Method>
+		<Desc>试图修改一个不属于自己的地址</Desc>
+		<Url>http://127.0.0.1:8000/update_address/100/1/</Url><!--- “100”作为测试程序地址编号插入数据库表中 -->
+		<InptArg>{"address":"上海市延安中路100号","phone":"13681166561"}</InptArg>
+		<Result>200</Result>
+		<CheckWord>你试图</CheckWord><!--- 检查试图修改不属于自己地址信息有无得逞 -->
+	</case>
+	<!--- 试图删除不属于自己地址信息 -->
+	<case>
+		<TestId>address-testcase007</TestId>
+		<Title>地址信息</Title>
+		<Method>get</Method>
+		<Desc>删除地址信息</Desc>
+		<Url>http://127.0.0.1:8000/delete_address/100/1/</Url><!--- “100”作为测试程序地址编号插入数据库表中 -->
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>你试图</CheckWord><!--- 检查试图删除不属于自己地址信息有无得逞 -->
+	</case>
+</node>

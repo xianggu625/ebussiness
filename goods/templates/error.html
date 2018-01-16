@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/user_info/">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	<div class="row" style="margin-top:30px">
+        <div class="col-lg-6">
+          <div class="input-group">
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+
+    <div class="container theme-showcase" role="main">
+      <font color="#FF0000">{{error}}</font>
+    </div> <!-- /container   glyphicon glyphicon-phone border-style:none; -->
+{% endblock %}
