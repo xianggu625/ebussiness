@@ -20,8 +20,8 @@ def index(request):
 
 #用户登出
 def logout(request):
-	response = HttpResponseRedirect('/index/') # 登出成功后跳转到登录页面
-	del request.session['username']  # 将username的session信息清空，然后写入服务器
+	response = HttpResponseRedirect('/index/') # 登录成功跳转查看商品信息
+	del request.session['username']  # 将session 信息写到服务器
 	return response
 
 #用户注册
@@ -90,6 +90,7 @@ def user_info(request):
     #检查用户是否登录
     util = Util()
     username = util.check_user(request)
+    print(username)
     #如果没有登录，跳转到首页
     if username=="":
         uf = LoginForm()
@@ -176,6 +177,8 @@ def search_name(request):
         count = util.cookies_count(request)
         #获取查询数据
         search_name = (request.POST.get("good", "")).strip()
+        print("-------------------------------------")
+        print(search_name)
         #通过objects.filter()方法进行模糊匹配查询，查询结果放入变量good_list
         good_list = Goods.objects.filter(name__icontains=search_name)
 
@@ -469,6 +472,8 @@ def create_order(request):
             orders_id = orders.id
             #获得购物车中的内容
             cookie_list = util.deal_cookes(request)
+            print("1")
+            print(cookie_list)
             #遍历购物车
             for key in cookie_list:
                 #构建对象Order()
@@ -619,12 +624,12 @@ def delete_orders(request,orders_id,sign):
                 return response
 
 def page_not_found(request):
-    return render(request, '404.html')
+	return render(request, '404.html')
 
 
 def page_error(request):
-    return render(request, '500.html')
+	return render(request, '500.html')
 
 
 def permission_denied(request):
-    return render(request, '403.html')
+	return render(request, '403.html')

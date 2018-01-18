@@ -1,3 +1,4 @@
+{%load staticfiles%}
 <head>
     <meta charset="UTF-8">
     <title>404页面</title>
@@ -21,9 +22,9 @@
 </head>
 <body>
     <div class="center-in-center">
-		<img src="/upload/404.JPG" width="228" height="196" align="left">你的页面找不到了<br>
+		<img src="{%static 'image/404.JPG'%}" width="228" height="196" align="left">你的页面找不到了<br>
 		不如搜索一下你想要的或者刷新一下网页吧！ <br>
-		<img src="/upload/reflesh.JPG" onclick="location.reload(); ">
+		<img src="{%static 'image/reflesh.JPG'%}" onclick="location.reload(); ">
 	</div>
 </body>
 </html>

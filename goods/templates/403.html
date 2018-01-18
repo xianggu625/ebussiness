@@ -1,3 +1,4 @@
+{%load staticfiles%}
 <head>
     <meta charset="UTF-8">
     <title>403页面</title>
@@ -21,8 +22,8 @@
 </head>
 <body>
     <div class="center-in-center">
-		<img src="/upload/403.JPG" width="228" height="196" align="left">你没有这个权限！<br>
-		<a href="/login_action/"><img src="/upload/home.JPG"></a>
+		<img src="{%static 'image/403.JPG'%}" width="228" height="196" align="left">你没有这个权限！<br>
+		<a href="/login_action/"><img src="{%static 'image/home.JPG'%}"></a>
 	</div>
 </body>
 </html>

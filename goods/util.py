@@ -10,6 +10,7 @@ class Util:
     def check_user(self,request):
         #从cookies中取出username
         username = str(request.session.get('username',''))
+        print(username)
         #判断数据库中是否尊在
         user = User.objects.filter(username = username)
         #如果不存在，返回空串
@@ -82,6 +83,8 @@ class Util:
     def deal_cookes(self,request):
         #获取本地所有内COOKIES
         cookie_list = request.COOKIES
+        print("999")
+        print(cookie_list)
         #去除COOKIES内的sessionid
         cookie_list.pop("sessionid")
         #如果COOKIES内含有csrftoken，去除COOKIES内的csrftoken

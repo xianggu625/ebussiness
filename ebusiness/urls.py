@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from goods import views	
 from django.views import static
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 urlpatterns = [
 	url(r'^$', views.index),
@@ -43,5 +46,6 @@ urlpatterns = [
 	url(r'^create_order/$', views.create_order),
 	url(r'^view_order/(?P<orders_id>[0-9]+)/$', views.view_order),
 	url(r'^view_all_order/$', views.view_all_order),
-	url(r'^upload/(?P<path>.*)',static.serve,{'document_root':'C:\\Users\\Jerry\ebusiness\\upload'}),
+	url(r'^upload/(?P<path>.*)',static.serve,{'document_root':os.path.join(BASE_DIR,'upload')}),
+	url(r'^static/(?P<path>.*)',static.serve,{'document_root':os.path.join(BASE_DIR,'static')}),
 ]
