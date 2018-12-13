@@ -20,23 +20,23 @@ def index(request):
 
 #用户登出
 def logout(request):
-	response = HttpResponseRedirect('/index/') # 登录成功跳转查看商品信息
-	del request.session['username']  # 将session 信息写到服务器
-	return response
+    response = HttpResponseRedirect('/index/') # 登录成功跳转查看商品信息
+    del request.session['username']  # 将session 信息写到服务器
+    return response
 
 #用户注册
 def register(request):
     util = Util()
-    if request.method == "POST":					#判断表单是否提交状态
-        uf = UserForm(request.POST)					#获得表单变量
-        if uf.is_valid():						#判断表单数据是否正确
+    if request.method == "POST":                    #判断表单是否提交状态
+        uf = UserForm(request.POST)                 #获得表单变量
+        if uf.is_valid():                       #判断表单数据是否正确
             #获取表单信息
             username = (request.POST.get('username')).strip()           #获取用户名信息
             password = (request.POST.get('password')).strip()           #获取密码信息
             #加密password
             password = util.md5(password)
             #判断密码长度是否做过50
-            email = (request.POST.get('email')).strip()		#获取Email信息
+            email = (request.POST.get('email')).strip()     #获取Email信息
             #查找数据库中是否存在相同用户名
             user_list = User.objects.filter(username=username)
             if user_list:
@@ -53,7 +53,7 @@ def register(request):
                 #返回登录页面
                 uf = LoginForm()
                 return render(request,'index.html',{'uf':uf})
-    else:	#如果不是表单提交状态，显示表单信息
+    else:   #如果不是表单提交状态，显示表单信息
         uf = UserForm()
     return render(request,'register.html',{'uf':uf})
 
@@ -73,7 +73,7 @@ def login_action(request):
             if username == '' or password == '':
                 return render(request,"index.html",{'uf':uf,"error":"用户名和密码不能为空"})
             else:
-		# 判断用户名和密码是否准确
+        # 判断用户名和密码是否准确
                 user = User.objects.filter(username = username,password = password)
                 if user:
                     response = HttpResponseRedirect('/goods_view/') # 登录成功跳转查看商品信息
@@ -90,17 +90,16 @@ def user_info(request):
     #检查用户是否登录
     util = Util()
     username = util.check_user(request)
-    print(username)
     #如果没有登录，跳转到首页
     if username=="":
         uf = LoginForm()
         return render(request,"index.html",{'uf':uf,"error":"请登录后再进入！"})
     else:
-		#count为当前购物车中商品的数量
+        #count为当前购物车中商品的数量
         count = util.cookies_count(request)
-		#获取登录用户信息
+        #获取登录用户信息
         user_list = get_object_or_404(User,username=username)
-		#获取登录用户收货地址的所有信息
+        #获取登录用户收货地址的所有信息
         address_list = Address.objects.filter(user_id=user_list.id)
         return render(request,"view_user.html",{"user": username,"user_info":user_list,"address":address_list,"count":count})
 
@@ -177,8 +176,6 @@ def search_name(request):
         count = util.cookies_count(request)
         #获取查询数据
         search_name = (request.POST.get("good", "")).strip()
-        print("-------------------------------------")
-        print(search_name)
         #通过objects.filter()方法进行模糊匹配查询，查询结果放入变量good_list
         good_list = Goods.objects.filter(name__icontains=search_name)
 
@@ -266,18 +263,18 @@ def update_chart(request,good_id):
         uf = LoginForm()
         return render(request,"index.html",{'uf':uf,"error":"请登录后再进入"})
     else:
-		#获取编号为good_id的商品
+        #获取编号为good_id的商品
         good = get_object_or_404(Goods, id=good_id)
-		#获取修改的数量
+        #获取修改的数量
         count = (request.POST.get("count"+good_id, "")).strip()
-		#如果数量值<=0,报出错信息
+        #如果数量值<=0,报出错信息
         if int(count)<=0:
-			#获得购物车列表信息
+            #获得购物车列表信息
             my_chart_list = util.add_chart(request)
-			#返回错误信息
+            #返回错误信息
             return render(request, "view_chart.html", {"user": username, "goodss": my_chart_list,"error":"个数不能小与0"})
         else:
-			#否则修改商品数量
+            #否则修改商品数量
             response = HttpResponseRedirect('/view_chart/')
             response.set_cookie(str(good.id),count,60*60*24*365)
             return response
@@ -472,8 +469,6 @@ def create_order(request):
             orders_id = orders.id
             #获得购物车中的内容
             cookie_list = util.deal_cookes(request)
-            print("1")
-            print(cookie_list)
             #遍历购物车
             for key in cookie_list:
                 #构建对象Order()
@@ -532,40 +527,41 @@ def view_all_order(request):
         return render(request,"index.html",{'uf':uf,"error":"请登录后再进入"})
     else:
         #获得所有总订单信息
-        orders_all = Orders.objects.all()
+        orders_all = Orders.objects.filter(id__gt="0")
+        #orders_all = Orders.objects.all()
         #初始化列表，给模板
         Reust_Order_list = []
-		#遍历总订单
+        #遍历总订单
         for key1 in orders_all:
-			#通过当前订单编号获取这个订单的单个订单详细信息
+            #通过当前订单编号获取这个订单的单个订单详细信息
             order_all = Order.objects.filter(order_id=key1.id)
             #检查这个订单是不是属于当前用户的
             user = get_object_or_404(User,id=order_all[0].user_id)
-			#如果属于将其放入总订单列表中
+            #如果属于将其放入总订单列表中
             if user.username == username:
-				#初始化总订单列表
+                #初始化总订单列表
                 Orders_object_list = []
-				#初始化总订单类
+                #初始化总订单类
                 orders_object = Orders_list
-				#产生一个Orders_lis对象
+                #产生一个Orders_lis对象
                 orders_object =  util.set_orders_list(key1)
-				#初始化总价钱为0
+                #初始化总价钱为0
                 prices=0
-				#遍历这个订单
+                #遍历这个订单
                 for key in order_all:
-					#初始化订单类
+                    #初始化订单类
                     order_object = Order_list
-					#产生一个Order_lis对象
+                    #产生一个Order_lis对象
                     order_object =  util.set_order_list(key)
-					#将产生的order_object类加入到总订单列表中
+                    #将产生的order_object类加入到总订单列表中
                     Orders_object_list.append(order_object)
-					#计算总价格
+                    #计算总价格
                     prices = order_object.price * key.count + prices
-				#把总价格放入到order_object类中
+                #把总价格放入到order_object类中
                 order_object.set_prices(prices)
-				#把当前记录加到Reust_Order_list列中
-				#从这里可以看出，Reust_Order_list每一项是一个字典类型，key为总订单类orders_object,value为总订单列表Orders_object_list
-				#总订单列表Orders_object_list中每一项为一个单独订单对象order_object，即Reust_Order_list=[{orders_object类:[order_object类,...]},...]
+                #把当前记录加到Reust_Order_list列中
+                #从这里可以看出，Reust_Order_list每一项是一个字典类型，key为总订单类orders_object,value为总订单列表Orders_object_list
+                #总订单列表Orders_object_list中每一项为一个单独订单对象order_object，即Reust_Order_list=[{orders_object类:[order_object类,...]},...]
                 Reust_Order_list.append({orders_object:Orders_object_list})
         return render(request, 'view_all_order.html', {"user": username,'Orders_set': Reust_Order_list})
 
@@ -624,12 +620,12 @@ def delete_orders(request,orders_id,sign):
                 return response
 
 def page_not_found(request):
-	return render(request, '404.html')
+    return render(request, '404.html')
 
 
 def page_error(request):
-	return render(request, '500.html')
+    return render(request, '500.html')
 
 
 def permission_denied(request):
-	return render(request, '403.html')
+    return render(request, '403.html')

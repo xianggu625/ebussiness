@@ -10,7 +10,6 @@ class Util:
     def check_user(self,request):
         #从cookies中取出username
         username = str(request.session.get('username',''))
-        print(username)
         #判断数据库中是否尊在
         user = User.objects.filter(username = username)
         #如果不存在，返回空串
@@ -74,22 +73,22 @@ class Util:
         cookie_list = request.COOKIES
         #只要进入网站，系统中就会产生一个名为sessionid的cookie
         #如果后台同时在运行，会产生一个名为csrftoken的cookie
-        if "csrftoken" in cookie_list:
-            return len(request.COOKIES)-2
-        else:
-            return len(request.COOKIES)-1
+        length = len(request.COOKIES)
+        for i in cookie_list:
+            if (i == "csrftoken") or (i == "sessionid") or (i.startswith("Hm_lvt_")) or(i.startswith("Hm_lpvt_")):
+                length = length-1
+        return length
 
     #获取购物车内的所有内容
     def deal_cookes(self,request):
         #获取本地所有内COOKIES
         cookie_list = request.COOKIES
-        print("999")
-        print(cookie_list)
         #去除COOKIES内的sessionid
         cookie_list.pop("sessionid")
         #如果COOKIES内含有csrftoken，去除COOKIES内的csrftoken
-        if "csrftoken" in cookie_list:
-            cookie_list.pop("csrftoken")
+        for key in list(cookie_list.keys()):
+            if (key == "csrftoken") or (key == "sessionid") or (key.startswith("Hm_lvt_")) or(key.startswith("Hm_lpvt_")):
+                del cookie_list[key]
         #返回处理好的购物车内的所有内容
         return cookie_list
 
