@@ -6,7 +6,7 @@ import hashlib
 
 # 以下是类模型定义部分
 class Util:
-	#检查用户是否登录
+    #检查用户是否登录
     def check_user(self,request):
         #从cookies中取出username
         username = str(request.session.get('username',''))
@@ -28,7 +28,7 @@ class Util:
         else:
             return ""
 	
-	#通过addressId判断这个地址是否属于当前登录用户
+    #通过addressId判断这个地址是否属于当前登录用户
     def check_User_By_Address(self,request,username,addressId):
         #获取addressId对应的address信息
         address = get_object_or_404(Address,id=addressId)
