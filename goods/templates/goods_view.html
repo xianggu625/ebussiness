@@ -40,9 +40,9 @@
             <tbody>
               {% for goods in goodss %}
                 <tr>
-                  <td>{{ goods.id }}</td>
-                  <td>{{ goods.name }}</td>
-                  <td>￥{{ goods.price }}</td>
+                  <td id="id">{{ goods.id }}</td>
+                  <td id="name">{{ goods.name }}</td>
+                  <td id="price">￥{{ goods.price }}</td>
                   <td><a href="/view_goods/{{goods.id}}/">查看</a></td>
                   <td><a href="/add_chart/{{goods.id}}/1/">放入</a></td>
                 </tr>

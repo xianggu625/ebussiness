@@ -38,9 +38,9 @@
             <tbody>
               {% for key in address %}
                 <tr>
-                  <td>{{key.id}}</td>
-                  <td>{{key.address}}</td>
-				  <td>{{key.phone}}</td>
+                  <td id="id">{{key.id}}</td>
+                  <td id="address">{{key.address}}</td>
+				  <td id="phone">{{key.phone}}</td>
 				  <td><a href="/update_address/{{key.id}}/1/">修改</a></td>
 				  <td><a href="/delete_address/{{key.id}}/1/">删除</a></td>
                 </tr>
@@ -50,7 +50,7 @@
 		  </form><br>
 		  <form method="get" action="/add_address/1/">
 		  {% csrf_token %}
-		  <input type="submit" value="添加地址">
+		  <input id="add_address" type="submit" value="添加地址">
 		  </form>
 		 </div>
 		 </div>
