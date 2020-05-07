@@ -67,27 +67,33 @@ class Util:
         else:
             return 0
 
+    def is_number(self,s):
+        try:
+            int(s)
+            return True
+        except ValueError:
+            pass
+        return False
+
     #返回购物车内商品的个数
     def cookies_count(self,request):
         #返回本地所有的cookie
         cookie_list = request.COOKIES
+        length = 0
         #只要进入网站，系统中就会产生一个名为sessionid的cookie
         #如果后台同时在运行，会产生一个名为csrftoken的cookie
-        length = len(request.COOKIES)
         for i in cookie_list:
-            if (i == "csrftoken") or (i == "sessionid") or (i.startswith("Hm_lvt_")) or(i.startswith("Hm_lpvt_")):
-                length = length-1
+            if (self.is_number(i)):
+                length = length+1
         return length
 
     #获取购物车内的所有内容
     def deal_cookes(self,request):
         #获取本地所有内COOKIES
         cookie_list = request.COOKIES
-        #去除COOKIES内的sessionid
-        cookie_list.pop("sessionid")
-        #如果COOKIES内含有csrftoken，去除COOKIES内的csrftoken
+        #如果COOKIES内不是数值，去除
         for key in list(cookie_list.keys()):
-            if (key == "csrftoken") or (key == "sessionid") or (key.startswith("Hm_lvt_")) or(key.startswith("Hm_lpvt_")):
+            if not (self.is_number(key)):
                 del cookie_list[key]
         #返回处理好的购物车内的所有内容
         return cookie_list

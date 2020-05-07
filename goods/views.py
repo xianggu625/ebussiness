@@ -4,11 +4,11 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from goods.models import Goods,Address,Order,Orders,User
 from goods.util import Util
 from goods.object import Chart_list,Order_list,Orders_list
 from goods.forms import UserForm,LoginForm,AddressForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -57,7 +57,6 @@ def register(request):
         uf = UserForm()
     return render(request,'register.html',{'uf':uf})
 
-
 #用户登录
 def login_action(request):
     util = Util()
@@ -69,18 +68,14 @@ def login_action(request):
             password = (request.POST.get('password')).strip()
             #加密password
             password = util.md5(password)
-            # 判断输入数据是否为空
-            if username == '' or password == '':
-                return render(request,"index.html",{'uf':uf,"error":"用户名和密码不能为空"})
+            # 判断用户名和密码是否准确
+            user = User.objects.filter(username = username,password = password)
+            if user:
+                response = HttpResponseRedirect('/goods_view/') # 登录成功跳转查看商品信息
+                request.session['username'] = username    # 将session 信息写到服务器
+                return response
             else:
-        # 判断用户名和密码是否准确
-                user = User.objects.filter(username = username,password = password)
-                if user:
-                    response = HttpResponseRedirect('/goods_view/') # 登录成功跳转查看商品信息
-                    request.session['username'] = username    # 将session 信息写到服务器
-                    return response
-                else:
-                    return render(request,"index.html",{'uf':uf,"error":"用户名或者密码错误"})
+                return render(request,"index.html",{'uf':uf,"error":"用户名或者密码错误"})
     else:
         uf = LoginForm()
     return render(request,'index.html',{'uf':uf})
@@ -236,6 +231,8 @@ def view_chart(request):
     else:
         #购物车中商品个数
         count = util.cookies_count(request)
+        print("++++++++++++")
+        print(count)
         #返回所有的cookie内容
         my_chart_list = util.add_chart(request)
         return render(request, "view_chart.html", {"user": username, "goodss": my_chart_list, "count":count})
