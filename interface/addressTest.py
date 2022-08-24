@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 #coding:utf-8
 import unittest,requests
-from util import GetXML,DB,Util
+from GetXML import GetXML
+from DB import DB
+from util import Util
 
 class addressTest(unittest.TestCase):
         def setUp(self):
@@ -61,7 +63,7 @@ class addressTest(unittest.TestCase):
                         else:
                                 self.assertIn(mylist["CheckWord"],str(data.text))
                         # 如果新建成功，删除刚建立的记录
-                        if "添加一个新的地址信息" in mylist["Desc"]:
+                        if "新的地址信息" in mylist["Desc"]:
                                 payload = eval(mylist["InptArg"])
                                 address = "\""+(str(payload["address"])).strip()+"\""
                                 self.dataBase.delete(self.addressTable,"address="+address)
@@ -71,8 +73,7 @@ class addressTest(unittest.TestCase):
                 #对于非法操作进行时候处理
                 self.util.tearDown(self.dataBase,self.userTable,self.myuservalue)
                 self.util.tearDown(self.dataBase,self.addressTable,self.addressvalues)
-				#清除其他初始化信息
-                self.util.tearDown(self.dataBase,self.addressTable,self.addressvalues)
+                #清除其他初始化信息
                 self.util.tearDown(self.dataBase,self.userTable,self.userValues)
                 #关闭数据库连接
                 self.dataBase.close()

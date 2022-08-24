@@ -10,7 +10,7 @@
 		<Method>post</Method>
 		<Desc>注册的时候，用户名已经存在</Desc>
 		<Url>http://127.0.0.1:8000/register/</Url>
-		<InptArg>{"username":"Johnson","password":"000000","email":"Johnson5@126.com"}</InptArg><!--- 用户名同initInfo.xml中用户信息 -->
+		<InptArg>{"username":"Johnson","password":"123456","email":"Johnson5@126.com"}</InptArg><!--- 用户名同initInfo.xml中用户信息 -->
 		<Result>200</Result>
 		<CheckWord>用户名已经存在！</CheckWord>
 	</case>
@@ -21,7 +21,7 @@
 		<Method>post</Method>
 		<Desc>注册用户名不存在</Desc><!--- 通过“注册用户名不存在”测试完毕删除数据库记录 -->
 		<Url>http://127.0.0.1:8000/register/</Url>
-		<InptArg>{"username":"smith","password":"000000","email":"smith@126.com"}</InptArg><!--- 用户名不同于initInfo.xml中用户信息 -->
+		<InptArg>{"username":"smith","password":"123456","email":"smith@126.com"}</InptArg><!--- 用户名不同于initInfo.xml中用户信息 -->
 		<Result>200</Result>
 		<CheckWord>登录</CheckWord>
 	</case>
@@ -32,7 +32,7 @@
 		<Method>post</Method>
 		<Desc>正确用户名，错误密码</Desc>
 		<Url>http://127.0.0.1:8000/login_action/</Url>
-		<InptArg>{"username":"Johnson","password":"123456"}</InptArg><!--- 密码不同于initInfo.xml中用户信息 -->
+		<InptArg>{"username":"Johnson","password":"654321"}</InptArg><!--- 密码不同于initInfo.xml中用户信息 -->
 		<Result>200</Result>
 		<CheckWord>用户名或者密码错误</CheckWord>
 	</case>
@@ -43,7 +43,7 @@
 		<Method>post</Method>
 		<Desc>错误用户名，正确密码</Desc>
 		<Url>http://127.0.0.1:8000/login_action/</Url>
-		<InptArg>{"username":"smith","password":"000000"}</InptArg><!--- 用户名不同于initInfo.xml中用户信息 -->
+		<InptArg>{"username":"smith","password":"123456"}</InptArg><!--- 用户名不同于initInfo.xml中用户信息 -->
 		<Result>200</Result>
 		<CheckWord>用户名或者密码错误</CheckWord>
 	</case>
@@ -54,7 +54,7 @@
 		<Method>post</Method>
 		<Desc>错误用户名，错误密码</Desc>
 		<Url>http://127.0.0.1:8000/login_action/</Url>
-		<InptArg>{"username":"smith","password":"123456"}</InptArg><!--- 用户名、密码均不同于initInfo.xml中用户信息 -->
+		<InptArg>{"username":"smith","password":"654321"}</InptArg><!--- 用户名、密码均不同于initInfo.xml中用户信息 -->
 		<Result>200</Result>
 		<CheckWord>用户名或者密码错误</CheckWord>
 	</case>
@@ -65,7 +65,7 @@
 		<Method>post</Method>
 		<Desc>正确用户名，正确密码</Desc>
 		<Url>http://127.0.0.1:8000/login_action/</Url>
-		<InptArg>{"username":"Johnson","password":"000000"}</InptArg><!--- 用户名、密码均同于initInfo.xml中用户信息 -->
+		<InptArg>{"username":"Johnson","password":"123456"}</InptArg><!--- 用户名、密码均同于initInfo.xml中用户信息 -->
 		<Result>200</Result>
 		<CheckWord>查看购物车</CheckWord>
 	</case>

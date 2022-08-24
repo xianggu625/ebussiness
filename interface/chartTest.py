@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 #coding:utf-8
 import unittest,requests
-from util import GetXML,DB,Util
+from GetXML import GetXML
+from DB import DB
+from util import Util
 
 class charttest(unittest.TestCase):
         def setUp(self):

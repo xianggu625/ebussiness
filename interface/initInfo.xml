@@ -4,7 +4,7 @@
 		<!--- 初始化用户信息 -->
 		<id>0</id><!--- 用户编号 -->
 		<username>Johnson</username><!--- 用户名称 -->
-		<password>000000</password><!--- 用户密码 -->
+		<password>123456</password><!--- 用户密码 -->
 		<email>Johnson@126.com</email><!--- Email地址 -->
 	</case>
 	<!--- 初始化商品信息 -->

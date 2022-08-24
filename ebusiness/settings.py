@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ok4*wia=(o6ycxkmhfls6%wydy1@yg-i$u-s=$b@y9#wjzxlrk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -119,17 +119,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-STATIC_URL = '/static/'
-STATIC_URL= '/upload/'
-
 STATICFILES_FINDERS =(
 	"django.contrib.staticfiles.finders.FileSystemFinder",
 	"django.contrib.staticfiles.finders.AppDirectoriesFinder"
 )
 
+STATIC_URL = '/static/'
+
+
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR,"static"),
-        os.path.join(BASE_DIR,"upload"),
 ]
 
-ALLOWED_HOSTS="*"
+ALLOWED_HOSTS=["*"]

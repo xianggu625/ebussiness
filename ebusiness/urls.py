@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+#from django.conf.urls import url
 from django.urls import re_path
 from django.contrib import admin
 from goods import views	
@@ -21,6 +21,8 @@ from django.views import static
 import os
 from django.conf.urls.static import static
 from . import settings
+from django.conf import settings
+from django.views.static import serve
 
 urlpatterns = [
 	re_path(r'^$', views.index),
@@ -47,4 +49,4 @@ urlpatterns = [
 	re_path(r'^create_order/$', views.create_order),
 	re_path(r'^view_order/(?P<orders_id>[0-9]+)/$', views.view_order),
 	re_path(r'^view_all_order/$', views.view_all_order),
-]+ static(settings.STATIC_URL, document_root = settings.STATICFILES_DIRS)+static(settings.STATIC_URL, document_root = settings.STATICFILES_DIRS)
+]+ static(settings.STATIC_URL, document_root = settings.STATICFILES_DIRS)

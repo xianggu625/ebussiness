@@ -21,7 +21,7 @@
 		<Method>post</Method>
 		<Desc>旧密码不正确</Desc>
 		<Url>http://127.0.0.1:8000/change_password/</Url>
-		<InptArg>{"oldpassword":"123456","newpassword":"654321","checkpassword":"654321"}</InptArg><!--- 旧密码与初始化密码不相同 -->
+		<InptArg>{"oldpassword":"111111","newpassword":"654321","checkpassword":"654321"}</InptArg><!--- 旧密码与初始化密码不相同 -->
 		<Result>200</Result>
 		<CheckWord>旧密码不正确</CheckWord>
 	</case>
@@ -32,7 +32,7 @@
 		<Method>post</Method>
 		<Desc>新密码不能与旧密码相同</Desc>
 		<Url>http://127.0.0.1:8000/change_password/</Url>
-		<InptArg>{"oldpassword":"000000","newpassword":"000000","checkpassword":"000000"}</InptArg><!--- 新密码与旧密码相同 -->
+		<InptArg>{"oldpassword":"123456","newpassword":"123456","checkpassword":"123456"}</InptArg><!--- 新密码与旧密码相同 -->
 		<Result>200</Result>
 		<CheckWord>新密码不能与旧密码相同</CheckWord>
 	</case>
@@ -43,7 +43,7 @@
 		<Method>post</Method>
 		<Desc>确认密码与新密码不匹配</Desc>
 		<Url>http://127.0.0.1:8000/change_password/</Url>
-		<InptArg>{"oldpassword":"000000","newpassword":"123456","checkpassword":"654321"}</InptArg><!--- 确认密码与新密码不匹配 -->
+		<InptArg>{"oldpassword":"123456","newpassword":"654321","checkpassword":"111111"}</InptArg><!--- 确认密码与新密码不匹配 -->
 		<Result>200</Result>
 		<CheckWord>确认密码与新密码不匹配</CheckWord>
 	</case>
@@ -54,7 +54,7 @@
 		<Method>post</Method>
 		<Desc>密码修改成功</Desc>
 		<Url>http://127.0.0.1:8000/change_password/</Url>
-		<InptArg>{"oldpassword":"000000","newpassword":"123456","checkpassword":"123456"}</InptArg><!--- 新密码与旧密码不同，确认密码与新密码匹配 -->
+		<InptArg>{"oldpassword":"123456","newpassword":"654321","checkpassword":"654321"}</InptArg><!--- 新密码与旧密码不同，确认密码与新密码匹配 -->
 		<Result>200</Result>
 		<CheckWord>密码修改成功</CheckWord>
 	</case>

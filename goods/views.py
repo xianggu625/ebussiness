@@ -33,8 +33,6 @@ def register(request):
             #获取表单信息
             username = (request.POST.get('username')).strip()           #获取用户名信息
             password = (request.POST.get('password')).strip()           #获取密码信息
-            #加密password
-            password = util.md5(password)
             #判断密码长度是否做过50
             email = (request.POST.get('email')).strip()     #获取Email信息
             #查找数据库中是否存在相同用户名
@@ -67,7 +65,7 @@ def login_action(request):
             username = (request.POST.get('username')).strip()
             password = (request.POST.get('password')).strip()
             #加密password
-            password = util.md5(password)
+            #password = util.md5(password)
             # 判断用户名和密码是否准确
             user = User.objects.filter(username = username,password = password)
             if user:
@@ -112,11 +110,11 @@ def change_password(request):
         #如果是提交表单，获取表单信息，并且进行表单信息验证
         if request.method == "POST":
             #获取旧密码
-            oldpassword=util.md5((request.POST.get("oldpassword", "")).strip())
+            oldpassword=request.POST.get("oldpassword", "").strip()
             #获取新密码
-            newpassword=util.md5((request.POST.get("newpassword", "")).strip())
+            newpassword=request.POST.get("newpassword", "").strip()
             #获取新密码的确认密码
-            checkpassword=util.md5((request.POST.get("checkpassword", "")).strip())
+            checkpassword=request.POST.get("checkpassword", "").strip()
             #如果旧密码不正确，报错误信息，不允许修改
             if oldpassword !=user_info.password:
                 return render(request,"change_password.html",{"user": username,"error":"旧密码不正确","count":count})

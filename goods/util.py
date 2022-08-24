@@ -8,9 +8,9 @@ import hashlib
 class Util:
     #检查用户是否登录
     def check_user(self,request):
-        #从cookies中取出username
+        #从session中取出username
         username = str(request.session.get('username',''))
-        #判断数据库中是否尊在
+        #判断数据库中是否存在
         user = User.objects.filter(username = username)
         #如果不存在，返回空串
         if (user is None):

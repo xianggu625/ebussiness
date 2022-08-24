@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 #coding:utf-8
 import unittest,requests
-from util import GetXML,DB,Util
+from GetXML import GetXML
+from DB import DB
+from util import Util
 
 class goodTest(unittest.TestCase):
         def setUp(self):
@@ -29,6 +31,8 @@ class goodTest(unittest.TestCase):
         def test_goods_info(self):
                 for mylist in self.mylists:
                         data = self.util.run_test(mylist,self.userValues,self.sign)
+                        print("data")
+                        print(data)
                         #验证返回码
                         self.assertEqual(mylist["Result"],str(data.status_code))
                         #验证返回文本
