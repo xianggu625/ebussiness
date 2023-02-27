@@ -4,7 +4,7 @@ from django.db import models
 #用户
 class User(models.Model):
     username = models.CharField(max_length=50)	#用户名
-    password = models.CharField(max_length=50)	#密码
+    password = models.CharField(max_length=64)	#密码
     email = models.EmailField()					#Email
 
     def __str__(self):
