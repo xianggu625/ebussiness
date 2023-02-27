@@ -31,5 +31,4 @@ pip3 install pymysq
 /ebusiness>python manage.py makemigrations goods
 /ebusiness>python manage.py migrate
 6.	查看数据库，应该出现如下的表：
- 
 7.	将本目录中的goods_goods.sql、goods_user.sql导入到ebusiness数据库中（或者用两个csv文件导入）。
