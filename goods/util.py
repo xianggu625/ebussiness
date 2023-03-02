@@ -19,14 +19,6 @@ class Util:
         else:
             return username
 
-    #MD5加密
-    def md5(self,mystr):
-        if isinstance(mystr,str):
-            m = hashlib.md5()   
-            m.update(mystr.encode('utf8'))
-            return m.hexdigest()
-        else:
-            return ""
 	
     #通过addressId判断这个地址是否属于当前登录用户
     def check_User_By_Address(self,request,username,addressId):

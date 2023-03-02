@@ -17,16 +17,16 @@ Including another URLconf
 from django.urls import re_path
 from django.contrib import admin
 from goods import views	
-from django.views import static
-import os
+#from django.views import static
 from django.conf.urls.static import static
 from . import settings
 from django.conf import settings
-from django.views.static import serve
+#from django.views.static import serve
 
 urlpatterns = [
 	re_path(r'^$', views.index),
 	re_path(r'^index/$', views.index),
+	re_path(r'^good_view/$', views.index),
 	re_path(r'^admin/', admin.site.urls),
 	re_path(r'^logout/$', views.logout),
 	re_path(r'^register/$', views.register),

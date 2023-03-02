@@ -80,4 +80,15 @@
 		<Result>200</Result>
 		<CheckWord>你试图</CheckWord><!--- 检查试图删除不属于自己单个订单有无得逞 -->
 	</case>
+	<!--- 试图查看当前不属于自己的订单 -->
+	<case>
+		<TestId>order-testcase008</TestId>
+		<Title>单个订单信息</Title>
+		<Method>get</Method>
+		<Desc>试图查看当前不属于自己的订单</Desc>
+		<Url>http://127.0.0.1:8000/view_order/101/</Url><!--- “101”作为测试程序总订单id插入数据库表中 -->
+		<InptArg></InptArg>
+		<Result>200</Result>
+		<CheckWord>你试图</CheckWord><!--- 检查你试图查看不属于你的订单信息！有无得逞 -->
+	</case>
 </node>

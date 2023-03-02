@@ -33,8 +33,11 @@ def register(request):
             #获取表单信息
             username = (request.POST.get('username')).strip()           #获取用户名信息
             password = (request.POST.get('password')).strip()           #获取密码信息
-            #判断密码长度是否做过50
             email = (request.POST.get('email')).strip()     #获取Email信息
+            #判断密码是否为空
+            if (len(password)!=64):
+                uf = UserForm()
+                return render(request,'register.html',{'uf':uf,"error":"密码不能小于5位"})
             #查找数据库中是否存在相同用户名
             user_list = User.objects.filter(username=username)
             if user_list:
@@ -166,24 +169,26 @@ def search_name(request):
         uf = LoginForm()
         return render(request,"index.html",{'uf':uf,"error":"请登录后再进入"})
     else:
-        count = util.cookies_count(request)
         #获取查询数据
-        search_name = (request.POST.get("good", "")).strip()
+        count = util.cookies_count(request)
+        if request.method == "POST": 
+            search_name = (request.POST.get("good", "")).strip()
+        if request.method == "GET":
+            search_name = (request.GET.get("good", "")).strip()
         #通过objects.filter()方法进行模糊匹配查询，查询结果放入变量good_list
         good_list = Goods.objects.filter(name__icontains=search_name)
-
         #对查询结果进行分页显示
         paginator = Paginator(good_list, 5)
         page = request.GET.get('page')
         try:
             contacts = paginator.page(page)
         except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
+            # 若页面不是整数，则交付第一页。
             contacts = paginator.page(1)
         except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
+            # 如果页面超出范围（例如9999），则交付结果的最后一页。
             contacts = paginator.page(paginator.num_pages)
-        return render(request, "goods_view.html", {"user": username, "goodss": contacts,"count":count})
+        return render(request, "goods_view.html", {"user": username, "goodss": contacts,"count":count,"goodsname": search_name})
 
 # 查看商品详情
 def view_goods(request, good_id):
@@ -492,6 +497,8 @@ def view_order(request,orders_id):
         uf = LoginForm()
         return render(request,"index.html",{'uf':uf,"error":"请登录后再进入"})
     else:
+        if not util.check_User_By_Orders(request,username,orders_id):
+            return render(request,"error.html",{"error":"你试图查看不属于你的订单信息！"})
         #获取订单信息
         orders_filter = get_object_or_404(Orders,id=orders_id)
         #获取订单的收货地址信息
@@ -531,6 +538,7 @@ def view_all_order(request):
             #通过当前订单编号获取这个订单的单个订单详细信息
             order_all = Order.objects.filter(order_id=key1.id)
             #检查这个订单是不是属于当前用户的
+            print(order_all[0].user_id)
             user = get_object_or_404(User,id=order_all[0].user_id)
             #如果属于将其放入总订单列表中
             if user.username == username:

@@ -14,7 +14,7 @@ class User(models.Model):
 class Goods(models.Model):
 	name = models.CharField(max_length=100)				#商品名称
 	price = models.FloatField()							#单价
-	picture = models.FileField(upload_to = './upload/') #图片
+	picture = models.FileField(upload_to = './static/image/') #图片
 	desc = models.TextField()							#描述
 
 	def __str__(self):

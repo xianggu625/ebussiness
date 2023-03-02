@@ -56,13 +56,13 @@
     <div class="pagination">
       <span class="step-links">
         {% if goodss.has_previous %}
-          <a href="?page={{ goodss.previous_page_number }}">上一页</a>
+          <a href="?page={{ goodss.previous_page_number }}&good={{goodsname}}">上一页</a>
         {% endif %}
           <span class="current">
             Page {{ goodss.number }} of {{ goodss.paginator.num_pages }}.
           </span>
         {% if goodss.has_next %}
-          <a href="?page={{ goodss.next_page_number }}">下一页</a>
+          <a href="?page={{ goodss.next_page_number }}&good={{goodsname}}">下一页</a>
         {% endif %}
       </span>
     </div>

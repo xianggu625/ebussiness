@@ -17,13 +17,16 @@
     <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet"-->
 	<link href="{%static 'css/my.css'%}" rel="stylesheet">
 	<script type="text/javascript" src="/static/js/sh256.js"></script>
+	<script type="text/javascript" src="/static/js/checkLength.js"></script>
 	<script type="text/javascript" >
-	function SHA256Password()
-	{
-	document.forms["myForm"]["password"].value = SHA256(document.forms["myForm"]["password"].value);
-	return true;
+	function SHA256Password(){
+		password = document.forms["myForm"]["password"].value;
+		if (checkLength(password,5)==1){
+			document.forms["myForm"]["password"].value = SHA256(password);
+		}
+		return true;
 	}
-</script>
+	</script>
 
   </head>
 
