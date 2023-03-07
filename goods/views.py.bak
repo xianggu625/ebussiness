@@ -549,11 +549,12 @@ def view_all_order(request):
                 orders_object = Orders_list
                 #产生一个Orders_lis对象
                 orders_object =  util.set_orders_list(key1)
-                orders_object.set_create_time(util.time_format(str(key1.create_time)))
                 #初始化总价钱为0
                 prices=0
                 #遍历这个订单
                 for key in order_all:
+                    print("################")
+                    print(str(key))
                     #初始化订单类
                     order_object = Order_list
                     #产生一个Order_lis对象
@@ -567,6 +568,7 @@ def view_all_order(request):
                 #把当前记录加到Reust_Order_list列中
                 #从这里可以看出，Reust_Order_list每一项是一个字典类型，key为总订单类orders_object,value为总订单列表Orders_object_list
                 #总订单列表Orders_object_list中每一项为一个单独订单对象order_object，即Reust_Order_list=[{orders_object类:[order_object类,...]},...]
+                create_time = util.time_format(str(Orders_object_list.create_time))
                 Reust_Order_list.append({orders_object:Orders_object_list})
         return render(request, 'view_all_order.html', {"user": username,'Orders_set': Reust_Order_list})
 

@@ -41,8 +41,8 @@ class Util:
                         self.root = dom.documentElement
                         password = self.root.getElementsByTagName('password')
                         password = str(password[0].firstChild.data).strip()
-                        md5password = self.sha256(password)
-                        newvalues = values.replace(password,md5password)
+                        sha256password = self.sha256(password)
+                        newvalues = values.replace(password,sha256password)
                         self.insertTable(dataBase,ordertable,newvalues)
                 return values
                 

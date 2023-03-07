@@ -4,6 +4,7 @@ from goods.models import Goods,Address,Order,Orders,User
 from goods.object import Chart_list,Order_list,Orders_list
 import hashlib
 
+
 # 以下是类模型定义部分
 class Util:
     #检查用户是否登录
@@ -132,3 +133,16 @@ class Util:
         chart_list.set_price(good_list.price)#商品的价钱
         chart_list.set_count(cookie_list[key])#商品的个数
         return chart_list
+
+    #时间格式转换
+    def time_format(self,t):
+        t1=["","","",""]
+        t = t.replace('.',' ')
+        t = t.split(" ")
+        d = t[0].split("-")
+        t1[0] = d[0]+"年"
+        t1[1] = d[1]+"月"
+        t1[2] = d[2]+"日"
+        t1[3] = t[1]
+        t1 = " " .join(t1)
+        return t1

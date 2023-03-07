@@ -15,7 +15,7 @@
         <div id="navbar" class="navbar-collapse collapse">
         </div><!--/.navbar-collapse -->
       </div>
-	  <p>生成时间：{{create_time}} 配货地址：{{address}} 总价钱：￥{{prices}}</p>
+	  <p>生成时间：{{orders.create_time}} 配货地址：{{address}} 总价钱：￥{{prices}}</p>
 
 	  <div class="row">
         <div class="col-md-6">
