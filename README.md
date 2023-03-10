@@ -29,7 +29,7 @@ pip3 install pymysq
 /ebusiness>python manage.py makemigrations goods  
 /ebusiness>python manage.py migrate  
 5.	查看数据库，应该出现表goods_user、goods_goods等表：  
-6.	7.	运行如下命令  
+6.	运行如下命令  
 INSERT INTO `goods_user` VALUES (1, 'linda', '24c8f01350b011f4388a729d3d3c5fd9c0027bb95c3bb3a6f5b26636391a859f', 'cindy@126.com');
 INSERT INTO `goods_user` VALUES (2, 'cindy', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'cindy@126.com');
 INSERT INTO `goods_user` VALUES (3, 'jerry', '481f6cc0511143ccdd7e2d1b1b94faf0a700a8b49cd13922a70b5ae28acaa8c5', 'cindy@126.com');
@@ -51,4 +51,4 @@ INSERT INTO `goods_goods` VALUES (13, '大排', 29, 'static/image/1.jpg', '大�
 INSERT INTO `goods_goods` VALUES (14, '烤肉', 50, 'static/image/2.jpg', '烤肉（barbecues），是中国的一道菜品，制作原料有猪肉、牛肉、蔬菜、海鲜等。独具风味，历史悠久，有浓郁的香味和鲜美的味道，可大大提高食欲。值得一提的是，现代烤肉与刀耕火种时的烤肉并不相同。据《汉代画象全集》可知，早在两汉时期就有体系完备的烤肉烤食讲究');
 INSERT INTO `goods_goods` VALUES (15, '羊肉串', 10, 'static/image/3.jpg', '羊肉串是指新鲜的羊肉用竹签或钢签穿成串后烧烤制成的菜品，是一种比较常见的烧烤类菜品');
 INSERT INTO `goods_goods` VALUES (16, '辣子鸡丁', 30, 'static/image/4.jpg', '辣子鸡丁，特色传统菜肴，属川菜系， 一道家常菜，较辣，是重庆一道著名的江湖风味菜，起源于歌乐山。干辣椒不是主料胜似主料，充分体现了江湖厨师“下手重”的特点。经巴国布衣厨师精心改良后其口味更富有特色，成菜色泽棕红油亮，质地酥软，麻辣味浓。咸鲜醇香，略带回甜，是一款食者啖之难忘的美味佳肴。');
-8.	查看ebusiness数据库goods_goods和goods_user表中是否有相应的数据。
+7.	查看ebusiness数据库goods_goods和goods_user表中是否有相应的数据。
