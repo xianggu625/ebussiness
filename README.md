@@ -29,7 +29,7 @@ pip3 install pymysq
 /ebusiness>python manage.py makemigrations goods  
 /ebusiness>python manage.py migrate  
 5.	查看数据库，应该出现表goods_user、goods_goods等表：  
-6.	7.	运行如下命令
+6.	7.	运行如下命令  
 INSERT INTO `goods_user` VALUES (1, 'linda', '24c8f01350b011f4388a729d3d3c5fd9c0027bb95c3bb3a6f5b26636391a859f', 'cindy@126.com');
 INSERT INTO `goods_user` VALUES (2, 'cindy', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'cindy@126.com');
 INSERT INTO `goods_user` VALUES (3, 'jerry', '481f6cc0511143ccdd7e2d1b1b94faf0a700a8b49cd13922a70b5ae28acaa8c5', 'cindy@126.com');
