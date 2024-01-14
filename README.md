@@ -23,9 +23,9 @@ DATABASES = {
 …  
 这里root的密码为123456。  
 2.	在MySQL数据库中建立ebusiness数据库。数据集为utf-8  
-3.	下载python插件mysql  
-pip3 install pymysql
-pip3 install mysqlcilent
+3.	下载python插件mysql和mysqlcilent
+/ebusiness>pip3 install pymysql
+/ebusiness>pip3 install mysqlcilent
 5. 删除ebusiness中所有pyc文件,主要集中在%ebusiness_home%\ebusiness和%ebusiness_home%\goods下
 6. 删除 %ebusiness_home%\goods\migrations目录下所有py文件
 7. 在ebusiness目录下运行如下命令：  
