@@ -8,8 +8,8 @@ This is the programe of ebusiness written by Django
 #转换为MySQL支持   
 1.	修改ebusiness/ebusiness/settings.py  
 …  
-Database  
-https://docs.djangoproject.com/en/1.11/ref/settings/#databases    
+#Database  
+#https://docs.djangoproject.com/en/1.11/ref/settings/#databases    
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
