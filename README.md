@@ -26,8 +26,8 @@ DATABASES = {
 3.	下载python插件mysql  
 pip3 install pymysql
 4. 删除ebusiness中所有pyc文件,主要集中在%ebusiness_home%\ebusiness和%ebusiness_home%\goods下
-5. 删除 goods\migrations目录下所有批阅文件  
-6.	在ebusiness目录下运行如下命令：  
+5. 删除 %ebusiness_home%\goods\migrations目录下所有py文件
+6. 在ebusiness目录下运行如下命令：  
 /ebusiness>python manage.py makemigrations goods  
 /ebusiness>python manage.py migrate  
 7.	查看数据库，应该出现表goods_user、goods_goods等表：  
