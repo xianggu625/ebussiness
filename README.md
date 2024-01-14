@@ -22,7 +22,7 @@ DATABASES = {
 }  
 …  
 这里root的密码为123456。  
-2.	在MySQL数据库中建立ebusiness数据库。  
+2.	在MySQL数据库中建立ebusiness数据库。数据集为utf-8  
 3.	下载python插件mysql  
 pip3 install pymysql
 pip3 install mysqlcilent
